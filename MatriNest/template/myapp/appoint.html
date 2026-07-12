@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Appointments — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Appointments</span>
+    {% if can_book %}
+      <h1>Book a doctor or nurse</h1>
+      <p>Gynecologist, pediatrician, nutritionist, psychologist or general physician — choose what you need.</p>
+    {% else %}
+      <h1>Appointment queue</h1>
+      <p>Every appointment booked across মাতৃNest, for your reference.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap" style="display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap;">
+    {% if can_book %}
+    <div class="form-shell wide" style="margin:0; flex:1.1; min-width:320px;">
+      <h2 style="font-size:1.35rem;">New appointment</h2>
+      <p class="sub">We'll confirm the time with you directly.</p>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}<small style="color:#A23F4F;">{{ field.errors.0 }}</small>{% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-block">Book appointment</button>
+      </form>
+    </div>
+    {% endif %}
+
+    <div style="flex:1; min-width:280px;">
+      <h3 style="font-size:1.1rem; margin-bottom:16px;">{% if can_book %}Your appointments{% else %}All appointments{% endif %}</h3>
+      {% if appointments %}
+        {% for a in appointments %}
+        <div class="card" style="margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+              <strong>{{ a.doctor_name }}</strong>
+              <p style="font-size:0.85rem; margin-top:2px;">{{ a.get_specialization_display }}{% if not can_book %} · booked by {{ a.full_name }}{% endif %}</p>
+            </div>
+            <span class="tag-pill">{{ a.date }} · {{ a.time }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state" style="padding:30px 10px;">
+          <p>{% if can_book %}No appointments yet — book your first above.{% else %}No appointments booked yet.{% endif %}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

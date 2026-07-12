@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Hire a Nurse — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Nursing support</span>
+    <h1>Hire a screened nurse</h1>
+    <p>Short visits or live-in support for postpartum recovery and newborn care.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap grid grid-3">
+    <div class="card">
+      <h3 style="font-size:1.05rem;">A few hours</h3>
+      <p style="margin-top:8px; font-size:0.9rem;">Day-time visits for checkups, feeding support and rest.</p>
+      <a href="{% url 'appoint' %}" class="btn btn-secondary btn-sm" style="margin-top:14px;">Request a visit</a>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1.05rem;">Postpartum care</h3>
+      <p style="margin-top:8px; font-size:0.9rem;">2–4 week support after delivery, scheduled around you.</p>
+      <a href="{% url 'appoint' %}" class="btn btn-secondary btn-sm" style="margin-top:14px;">Request care</a>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1.05rem;">Live-in nursing</h3>
+      <p style="margin-top:8px; font-size:0.9rem;">Ongoing, full-time support for high-need recovery.</p>
+      <a href="{% url 'appoint' %}" class="btn btn-secondary btn-sm" style="margin-top:14px;">Request a nurse</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

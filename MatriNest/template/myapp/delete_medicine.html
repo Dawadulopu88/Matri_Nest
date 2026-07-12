@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Delete Medicine — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:48px;">
+  <div class="form-shell center">
+    <h2>Delete this medicine?</h2>
+    <p class="sub">This removes <strong>{{ medicine.medicine_name }}</strong> from the medicine corner for everyone. This can't be undone.</p>
+    <form method="post" style="display:flex; gap:12px; justify-content:center;">
+      {% csrf_token %}
+      <a href="{% url 'medicine_details' medicine.id %}" class="btn btn-ghost">Cancel</a>
+      <button type="submit" class="btn btn-danger">Yes, delete it</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ medicine.medicine_name }} — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:48px;">
+  <div class="wrap">
+    <a href="{% url 'medicine_list' %}" style="font-size:0.88rem; color:var(--ink-soft); text-decoration:none;">← Back to medicines</a>
+
+    <div class="detail-layout" style="margin-top:24px;">
+      <div class="detail-img">
+        {% if medicine.image %}
+          <img src="{{ medicine.image.url }}" alt="{{ medicine.medicine_name }}">
+        {% else %}
+          <div style="background:var(--blush); height:340px; display:flex; align-items:center; justify-content:center; font-size:3rem;">💊</div>
+        {% endif %}
+      </div>
+      <div class="detail-body">
+        <span class="eyebrow">Medicine</span>
+        <h1 style="font-size:2rem; margin-top:10px;">{{ medicine.medicine_name }}</h1>
+        <div class="price-tag">৳{{ medicine.price }}</div>
+        <p>{{ medicine.description|default:"No description provided for this medicine yet." }}</p>
+
+        {% if user.is_authenticated %}
+        <div style="display:flex; gap:12px; margin-top:30px;">
+          <a href="{% url 'update_medicine' medicine.id %}" class="btn btn-secondary">Edit</a>
+          <a href="{% url 'delete' medicine.id %}" class="btn btn-danger">Delete</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

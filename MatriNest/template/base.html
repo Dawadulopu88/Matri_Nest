@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{% block title %}মাতৃNest — The Safe Nest Every Mom and Baby Deserves{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block styles %}{% endblock %}
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="{% url 'home' %}" class="brand">
+      <svg class="nestmark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="#F4DFE2"/>
+        <path d="M8 28c4-10 28-10 32 0" stroke="#C2566B" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M12 22c3.5-7 20.5-7 24 0" stroke="#C2566B" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.55"/>
+        <circle cx="24" cy="17" r="4.4" fill="#C2566B"/>
+        <circle cx="24" cy="17" r="1.7" fill="#FBF4EC"/>
+      </svg>
+      <span class="brand-name">মাতৃNest</span>
+    </a>
+    <nav class="main-nav">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'medicine_list' %}">Medicines</a>
+      <a href="{% url 'appoint' %}">{% if user.is_doctor %}Queue{% else %}Appointments{% endif %}</a>
+      {% if user.is_patient or not user.is_authenticated %}<a href="{% url 'health' %}">Health</a>{% endif %}
+      <a href="{% url 'help' %}">Help</a>
+      {% if user.is_authenticated and user.is_staff or user.is_superuser %}<a href="/admin/">Admin</a>{% endif %}
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="pill-outline">👤 {{ user.username }}</a>
+        <a href="{% url 'logout' %}" class="nav-logout">Log out</a>
+      {% else %}
+        <a href="{% url 'login' %}">Log in</a>
+        <a href="{% url 'signup' %}" class="pill-solid">Sign up</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+{% if messages %}
+<div class="messages-stack">
+  {% for message in messages %}
+  <div class="alert {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %}">
+    <span>{{ message }}</span>
+    <button type="button" onclick="this.parentElement.style.display='none'" aria-label="Dismiss">✕</button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <span class="brand-name" style="font-family:var(--font-display); font-weight:700; font-size:1.15rem;">মাতৃNest</span>
+      <p style="margin-top:4px;">The safe nest every mom and baby deserve.</p>
+    </div>
+    <div class="foot-links">
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'help' %}">Help</a>
+      <a href="{% url 'medicine_list' %}">Medicines</a>
+    </div>
+  </div>
+</footer>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

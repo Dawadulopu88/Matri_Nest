@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Home — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">
+      {% if user.is_staff or user.is_superuser %}Admin dashboard
+      {% elif user.is_doctor %}Doctor dashboard
+      {% else %}Your dashboard{% endif %}
+    </span>
+    <h1>Welcome back, {{ user.username }}.</h1>
+    <p>Pick up where you left off, or jump straight into a service below.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <a href="{% url 'appoint' %}" class="card service-card">
+        <div class="icon-badge">🩺</div>
+        <h3>{% if user.is_doctor %}Appointment queue{% else %}Book an appointment{% endif %}</h3>
+        <p>{% if user.is_doctor %}See every appointment booked across the platform.{% else %}Doctors and nurses across 5 specializations.{% endif %}</p>
+      </a>
+      <a href="{% url 'medicine_list' %}" class="card service-card">
+        <div class="icon-badge">💊</div>
+        <h3>Medicine corner</h3>
+        <p>Browse and order trusted medicines.</p>
+      </a>
+      {% if user.is_patient %}
+      <a href="{% url 'health' %}" class="card service-card">
+        <div class="icon-badge">📈</div>
+        <h3>Track your health</h3>
+        <p>Log weight, blood pressure and glucose.</p>
+      </a>
+      <a href="{% url 'mental' %}" class="card service-card">
+        <div class="icon-badge">🤍</div>
+        <h3>Mental wellness</h3>
+        <p>A quiet space to check in with yourself.</p>
+      </a>
+      {% endif %}
+      <a href="{% url 'ambulance' %}" class="card service-card">
+        <div class="icon-badge">🚑</div>
+        <h3>Book an ambulance</h3>
+        <p>Fast dispatch when minutes matter.</p>
+      </a>
+      <a href="{% url 'emergency' %}" class="card service-card">
+        <div class="icon-badge">🆘</div>
+        <h3>Emergency alert</h3>
+        <p>One-tap SOS for urgent situations.</p>
+      </a>
+      <a href="{% url 'nurse' %}" class="card service-card">
+        <div class="icon-badge">🧑‍⚕️</div>
+        <h3>Hire a nurse</h3>
+        <p>Screened nursing support, on demand.</p>
+      </a>
+      {% if user.is_staff or user.is_superuser %}
+      <a href="{% url 'upload_medicine' %}" class="card service-card">
+        <div class="icon-badge">➕</div>
+        <h3>Add a medicine</h3>
+        <p>Manage the medicine catalogue (admin only).</p>
+      </a>
+      <a href="/admin/" class="card service-card">
+        <div class="icon-badge">🛠️</div>
+        <h3>Full admin panel</h3>
+        <p>Manage every user, appointment and record.</p>
+      </a>
+      {% endif %}
+      <a href="{% url 'profile' %}" class="card service-card">
+        <div class="icon-badge">👤</div>
+        <h3>Your profile</h3>
+        <p>Manage your details and care preferences.</p>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

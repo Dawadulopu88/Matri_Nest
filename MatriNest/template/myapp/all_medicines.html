@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Medicine Corner — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;">
+    <div>
+      <span class="eyebrow">Medicine corner</span>
+      <h1>Trusted medicines, delivered.</h1>
+      <p>Browse essentials for pregnancy, postpartum and baby care.</p>
+    </div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'upload_medicine' %}" class="btn btn-primary">+ Add medicine</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap">
+    <form method="get" style="max-width:420px; margin-bottom:32px; display:flex; gap:10px;">
+      <input type="text" name="q" value="{{ query }}" placeholder="Search medicines..."
+        style="flex:1; padding:12px 16px; border-radius:30px; border:1.5px solid var(--line); background:var(--white); font-family:var(--font-body);">
+      <button type="submit" class="btn btn-secondary btn-sm">Search</button>
+    </form>
+
+    {% if medicines %}
+    <div class="grid grid-4">
+      {% for medicine in medicines %}
+      <div class="card med-card">
+        <div class="med-img">
+          {% if medicine.image %}
+            <img src="{{ medicine.image.url }}" alt="{{ medicine.medicine_name }}">
+          {% else %}
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;">💊</div>
+          {% endif %}
+        </div>
+        <div class="med-body">
+          <h3 style="font-size:1.02rem;">{{ medicine.medicine_name }}</h3>
+          <p style="font-size:0.85rem;">{{ medicine.description|truncatewords:10 }}</p>
+          <div class="med-price">৳{{ medicine.price }}</div>
+          <div class="med-actions">
+            <a href="{% url 'medicine_details' medicine.id %}" class="btn btn-secondary btn-sm">View</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'update_medicine' medicine.id %}" class="btn btn-ghost btn-sm">Edit</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <h3>No medicines found</h3>
+      <p>Try a different search, or add the first one.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

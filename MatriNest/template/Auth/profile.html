@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Your Profile — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:54px;">
+  <div class="wrap" style="max-width:640px;">
+    <div class="card">
+      <div class="profile-hero">
+        <div class="profile-avatar">
+          {% if user.profile.profile_picture %}
+            <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.username }}">
+          {% else %}
+            {{ user.username|slice:":1"|upper }}
+          {% endif %}
+        </div>
+        <div>
+          <h2 style="font-size:1.5rem;">{{ user.username }}</h2>
+          <p style="margin-top:4px;">{{ user.email }}</p>
+          <span class="badge-role">{{ user.get_user_type_display }}</span>
+        </div>
+      </div>
+
+      <hr class="divider-soft">
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}<small style="color:#A23F4F;">{{ field.errors.0 }}</small>{% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Save profile</button>
+      </form>
+
+      <hr class="divider-soft">
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        {% if user.is_patient %}
+        <a href="{% url 'appoint' %}" class="btn btn-secondary">My appointments</a>
+        <a href="{% url 'health' %}" class="btn btn-secondary">My health log</a>
+        {% elif user.is_doctor %}
+        <a href="{% url 'appoint' %}" class="btn btn-secondary">Appointment queue</a>
+        {% endif %}
+        {% if user.is_staff or user.is_superuser %}
+        <a href="/admin/" class="btn btn-secondary">Admin panel</a>
+        {% endif %}
+        <a href="{% url 'logout' %}" class="btn btn-danger">Log out</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

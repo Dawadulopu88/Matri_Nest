@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Emergency Alert — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="section center" style="padding-top:70px; padding-bottom:80px;">
+  <div class="wrap" style="max-width:560px;">
+    <span class="eyebrow">SOS</span>
+    <h1 style="font-size:2.1rem; margin-top:10px;">Send an emergency alert</h1>
+    <p style="margin-top:14px;">If you or someone with you needs urgent help, send an alert. This is for pregnancy and newborn emergencies — for life-threatening situations, call emergency services directly.</p>
+
+    <button class="btn btn-primary" style="margin-top:32px; padding:20px 50px; font-size:1.1rem; border-radius:50px;">
+      🆘 Send SOS alert
+    </button>
+
+    <div style="margin-top:46px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a href="{% url 'ambulance' %}" class="btn btn-secondary btn-sm">Book an ambulance</a>
+      <a href="{% url 'appoint' %}" class="btn btn-ghost btn-sm">Contact your doctor</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

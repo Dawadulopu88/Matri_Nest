@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Health Tracking — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Health tracking</span>
+    <h1>Keep an eye on the numbers that matter</h1>
+    <p>Log your weight, blood pressure, glucose and symptoms — we'll keep your last 10 entries handy.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap" style="display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap;">
+    <div class="form-shell wide" style="margin:0; flex:1; min-width:320px;">
+      <h2 style="font-size:1.35rem;">New entry</h2>
+      <p class="sub">A minute today saves questions later.</p>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}<small style="color:#A23F4F;">{{ field.errors.0 }}</small>{% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-block">Save entry</button>
+      </form>
+    </div>
+
+    <div style="flex:1.1; min-width:300px;">
+      <h3 style="font-size:1.1rem; margin-bottom:16px;">Recent entries</h3>
+      {% if records %}
+        {% for r in records %}
+        <div class="card" style="margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between;">
+            <strong>{{ r.date }}</strong>
+            <span class="tag-pill">{{ r.weight }} kg</span>
+          </div>
+          <div style="display:flex; gap:18px; margin-top:10px; font-size:0.88rem; color:var(--ink-soft);">
+            <span>BP: <strong style="color:var(--ink);">{{ r.blood_pressure }}</strong></span>
+            <span>Glucose: <strong style="color:var(--ink);">{{ r.glucose }}</strong></span>
+          </div>
+          {% if r.symptoms %}<p style="margin-top:8px; font-size:0.86rem;">{{ r.symptoms }}</p>{% endif %}
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state" style="padding:30px 10px;">
+          <p>No entries yet — your first log starts the trend line.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

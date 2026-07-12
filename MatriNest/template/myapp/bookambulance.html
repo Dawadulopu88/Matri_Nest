@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Book an Ambulance — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:60px;">
+  <div class="wrap" style="display:flex; gap:50px; align-items:center; flex-wrap:wrap;">
+    <div style="flex:1; min-width:300px;">
+      <span class="eyebrow">Ambulance</span>
+      <h1 style="font-size:2.2rem; margin-top:10px;">Fast dispatch, when minutes matter.</h1>
+      <p style="margin-top:14px; max-width:46ch;">Request an ambulance for yourself or a family member. Our partner network prioritizes maternal and newborn emergencies.</p>
+      <div style="display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;">
+        <a href="tel:999" class="btn btn-primary">🚑 Call ambulance now</a>
+        <a href="{% url 'emergency' %}" class="btn btn-secondary">Send emergency alert instead</a>
+      </div>
+    </div>
+    <div style="flex:1; min-width:280px;">
+      <div class="card">
+        <h3 style="font-size:1.05rem;">What to share when calling</h3>
+        <hr class="divider-soft" style="margin:14px 0;">
+        <div class="info-row"><span>Patient name</span><span>—</span></div>
+        <div class="info-row"><span>Pickup address</span><span>—</span></div>
+        <div class="info-row"><span>Condition</span><span>—</span></div>
+        <div class="info-row"><span>Contact number</span><span>—</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

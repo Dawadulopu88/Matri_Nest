@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}মাতৃNest — The Safe Nest Every Mom and Baby Deserves{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">For pregnancy &amp; the first 4 years</span>
+      <h1>One soft place to land, from <em>bump</em> to <em>babyhood</em>.</h1>
+      <p class="lead">মাতৃNest brings trusted doctors, medicine, health tracking, mental wellness and emergency care into a single nest — built for mothers who are carrying enough already.</p>
+      <div class="hero-actions">
+        <a href="{% url 'signup' %}" class="btn btn-primary">Join মাতৃNest</a>
+        <a href="{% url 'about' %}" class="btn btn-secondary">How it works</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 360 360" width="100%" height="100%" style="max-width:380px;" aria-hidden="true">
+        <circle cx="180" cy="180" r="170" fill="#F4DFE2"/>
+        <circle cx="180" cy="180" r="128" fill="#FBF4EC"/>
+        <path d="M60 210c30-70 210-70 240 0" stroke="#C2566B" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M85 175c24-52 166-52 190 0" stroke="#C2566B" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <path d="M108 145c18-36 126-36 144 0" stroke="#8FA889" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="180" cy="118" r="30" fill="#C2566B"/>
+        <circle cx="180" cy="113" r="10" fill="#FBF4EC"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center" style="margin:0 auto 38px;">
+      <span class="eyebrow">What's inside the nest</span>
+      <h2>Every stage, one platform</h2>
+      <p>From MamaNest for pregnancy to BabyNest for the years after — care that follows you, not the other way around.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card service-card">
+        <div class="icon-badge">🩺</div>
+        <h3>Doctor &amp; nurse booking</h3>
+        <p>Verified gynecologists, pediatricians and nurses, a few taps away.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">💊</div>
+        <h3>Medicine corner</h3>
+        <p>Order trusted medicines and essentials, delivered to your door.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">📈</div>
+        <h3>Health tracking</h3>
+        <p>Log weight, blood pressure and glucose — see your trend over time.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">🤍</div>
+        <h3>Mental wellness</h3>
+        <p>A quiet, judgement-free space to check in on how you're really doing.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">🚑</div>
+        <h3>Ambulance</h3>
+        <p>One tap, dispatched fast, when minutes matter most.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">🆘</div>
+        <h3>Emergency alert</h3>
+        <p>An SOS line built for pregnancy and newborn emergencies.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">👶</div>
+        <h3>BabyNest care</h3>
+        <p>Growth tracking, vaccination reminders and pediatric support.</p>
+      </div>
+      <div class="card service-card">
+        <div class="icon-badge">🧑‍⚕️</div>
+        <h3>Hire a nurse</h3>
+        <p>Short or long-term nursing support, screened and reliable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap" style="display:flex; align-items:center; gap:50px; flex-wrap:wrap;">
+    <div style="flex:1; min-width:280px;">
+      <span class="eyebrow">Why মাতৃNest</span>
+      <h2 style="margin-top:10px; font-size:1.9rem;">Built for the version of motherhood nobody warns you about.</h2>
+      <p style="margin-top:14px;">No more juggling five different apps and phone numbers in a moment of worry. One trusted nest holds your doctors, your medicines, your records, and your support — quietly, in the background, until you need it.</p>
+      <a href="{% url 'signup' %}" class="btn btn-primary" style="margin-top:24px;">Create your account</a>
+    </div>
+    <div style="flex:1; min-width:280px;" class="grid grid-2">
+      <div class="card"><h3 style="font-size:1.6rem; color:var(--rose-deep);">10K+</h3><p>Mothers planned for in Year 1, Dhaka</p></div>
+      <div class="card"><h3 style="font-size:1.6rem; color:var(--rose-deep);">2</h3><p>Care lines — MamaNest &amp; BabyNest</p></div>
+      <div class="card"><h3 style="font-size:1.6rem; color:var(--rose-deep);">24/7</h3><p>Emergency &amp; ambulance access</p></div>
+      <div class="card"><h3 style="font-size:1.6rem; color:var(--rose-deep);">5</h3><p>Specializations on call</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

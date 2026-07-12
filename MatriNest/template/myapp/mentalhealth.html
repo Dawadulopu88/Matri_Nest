@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Mental Wellness — মাতৃNest{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Mental wellness</span>
+    <h1>You're allowed to not be okay.</h1>
+    <p>A quiet, judgement-free space to check in — for the worries pregnancy and new motherhood don't always make room for.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap grid grid-3">
+    <div class="card service-card">
+      <div class="icon-badge">💬</div>
+      <h3>Talk to a counsellor</h3>
+      <p>Book a private session with a licensed perinatal psychologist.</p>
+      <a href="{% url 'appoint' %}" class="btn btn-secondary btn-sm" style="margin-top:6px;">Book a session</a>
+    </div>
+    <div class="card service-card">
+      <div class="icon-badge">📝</div>
+      <h3>Mood check-in</h3>
+      <p>A short, private self-assessment to notice how you've been feeling.</p>
+      <a href="{% url 'health' %}" class="btn btn-secondary btn-sm" style="margin-top:6px;">Log how you feel</a>
+    </div>
+    <div class="card service-card">
+      <div class="icon-badge">🫂</div>
+      <h3>Support community</h3>
+      <p>Connect with other mothers going through the same season.</p>
+      <a href="{% url 'about' %}" class="btn btn-secondary btn-sm" style="margin-top:6px;">Learn more</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
